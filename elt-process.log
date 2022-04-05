@@ -1,0 +1,5 @@
+2022-04-05 17:01:59,597 DEBUG    ETL - generateCsvEquip - Iniciando o processo
+2022-04-05 17:01:59,599 DEBUG    ETL - generateCSV - Processo finalizado com sucesso
+2022-04-05 17:01:59,624 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
+2022-04-05 17:01:59,630 DEBUG    ELT - dataInsert EQUIPMENT - Rows added to tb_equipment 0
+2022-04-05 17:01:59,631 INFO     ETL MAIN - Finalizado elapsed_time: 0:00:00.033305
