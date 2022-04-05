@@ -1,22 +1,31 @@
-import sqlite3
-import os
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
+import logging
 
-class databaseGeneric(object):
-    db_host: str
-    db_port: str
-    db_user: str
-    db_password: str
-    db_name: str
-
-    def __inti__(self):
-        db_host = ''
-        db_port =  ''
-        db_user = ''
-        db_passowrd = '' 
-        db_name = ''
-
-    def connect(self):
-        connection = sqlite3.connect('')
-        return connection
-
+def connectionSql():
+    try:
+        # specify database configurations
+        config = {
+            'host': 'localhost',
+            'port': 3306,
+            'user': 'root',
+            'password': 'admin',
+            'database': 'db'
+        }
+        db_user = config.get('user')
+        db_pwd = config.get('password')
+        db_host = config.get('host')
+        db_port = config.get('port')
+        db_name = config.get('database')
+        # specify connection string
+        connection_str = f'mysql+pymysql://{db_user}:{db_pwd}@{db_host}:{db_port}/{db_name}'
+        # connect to database
+        engine = sqlalchemy.create_engine(connection_str)
+        connection = engine.connect()
+        
+        print('Conexao ao MySQL realizada com sucesso')
     
+    except SQLAlchemyError as e:
+        print('Erro ao se conectar ao MySQL - [%s]', e)
+
+    return connection
