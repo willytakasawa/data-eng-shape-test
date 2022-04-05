@@ -33,9 +33,9 @@ def generateDict(log_file):
 
 def executar():
     
-'''id=connection.execute("INSERT INTO  `db`.`tb_sensor` (`sensor_id` ,`equipment_id`) \
-                  VALUES (1, 45)")
-print("Row Added  = ",id.rowcount)'''
+    '''id=connection.execute("INSERT INTO  `db`.`tb_sensor` (`sensor_id` ,`equipment_id`) \
+                    VALUES (1, 45)")
+    print("Row Added  = ",id.rowcount)'''
 
 def main():
     logging.basicConfig('elt-proccess.log', filemode='w+', level=logging.DEBUG, format='%(asctime)s %(levelname) %(message)s')
