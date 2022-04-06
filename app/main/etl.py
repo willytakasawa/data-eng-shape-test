@@ -51,10 +51,10 @@ def generateCsvEquip():
             file = json.load(f)
             equipment_csv = pd.DataFrame(file)
             equipment_csv.to_csv("processed_data/equipments.csv", sep=';', encoding='utf-8', index=False)
-            logging.debug("ETL - generateCSV - Processo finalizado com sucesso")
+            logging.debug("ETL - generateCsvEquip - Processo finalizado com sucesso")
  
     except Exception as e:
-        logging.exception('ETL - generateCsv - Exception: %s', e, exc_info=True)
+        logging.exception('ETL - generateCsvEquip - Exception: %s', e, exc_info=True)
 
 
 def dataInsert():
