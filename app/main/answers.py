@@ -1,9 +1,7 @@
-import json
 import pandas as pd
 import logging
 from datetime import datetime
 from db_generic import connectionSql
-import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 
 logger:logging.Logger
