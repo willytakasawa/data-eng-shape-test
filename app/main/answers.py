@@ -14,7 +14,11 @@ def ansFirstQuestion():
     connection = connectionSql()
     try:
         logging.debug("ANSWER - 1 - Iniciando o de extracao")
-        query_1 = ("WITH temp AS (SELECT DISTINCT(CONCAT(dt_failure, '',  sensor)) FROM tb_failure) SELECT COUNT(*) AS n_failures FROM temp;")
+        query_1 = ("WITH temp AS \
+            (SELECT DISTINCT(CONCAT(dt_failure, '',  sensor)) \
+                FROM tb_failure \
+                    WHERE dt_failure BETWEEN '2020-01-01 00:00:00' AND '2020-01-30 23:59:59') \
+                        SELECT COUNT(*) AS n_failures FROM temp;")
         ans_1 = connection.execute(query_1)
         
         data = []
@@ -22,7 +26,8 @@ def ansFirstQuestion():
             data.append(x)
         
         df_1 = pd.DataFrame(data, ["total_failure"])
-        print(df_1.to_string(index=False))
+        print('\n'*2 + 'ANSWER 1:' + '\n'*2 + df_1.to_string(index=False))
+        df_1.to_excel('answers/answer1.xlsx', index=False)
         
     except SQLAlchemyError as e:
         logging.exception('ANSWER - 1 - Exception: %s', e, exc_info=True)
@@ -35,8 +40,9 @@ def ansSecondQuestion():
             "WITH temp AS\
                 (SELECT tb_failure.*, tb_equipment.code \
                     FROM tb_failure LEFT JOIN tb_sensor ON tb_failure.sensor = tb_sensor.sensor_id \
-                        LEFT JOIN tb_equipment ON tb_sensor.equipment_id = tb_equipment.equipment_id) \
-                            SELECT code, COUNT(*) AS counter FROM temp GROUP BY code ORDER BY counter DESC;"
+                        LEFT JOIN tb_equipment ON tb_sensor.equipment_id = tb_equipment.equipment_id \
+                            WHERE dt_failure BETWEEN '2020-01-01 00:00:00' AND '2020-01-30 23:59:59') \
+                                SELECT code, COUNT(*) AS counter FROM temp GROUP BY code ORDER BY counter DESC;"
         )
         ans_2 = connection.execute(query_2)
         data = []
@@ -45,7 +51,8 @@ def ansSecondQuestion():
             data.append(x)
         
         df_2 = pd.DataFrame(data, columns = ['equipment_code', 'n_failures'])
-        print(df_2.to_string(index=False))
+        print('\n'*2 + 'ANSWER 2:' + '\n'*2 + df_2.to_string(index=False))
+        df_2.to_excel('answers/answer2.xlsx', index=False)
         
     except SQLAlchemyError as e:
         logging.exception('ANSWER - 2 - Exception: %s', e, exc_info=True)
@@ -59,18 +66,20 @@ def ansThirdQuestion():
                 (SELECT tb_failure.*, tb_equipment.equipment_id, tb_equipment.group_name \
                     FROM tb_failure \
                         LEFT JOIN tb_sensor ON tb_failure.sensor = tb_sensor.sensor_id \
-                            LEFT JOIN tb_equipment ON tb_sensor.equipment_id = tb_equipment.equipment_id), \
-                                temp2 AS(SELECT equipment_id, group_name, COUNT(*) as n_failures \
-                                    FROM temp GROUP BY equipment_id) \
-                                        SELECT group_name, AVG(n_failures) AS avg_n_failures \
-                                            FROM temp2 GROUP BY group_name ORDER BY avg_n_failures ASC;"
+                            LEFT JOIN tb_equipment ON tb_sensor.equipment_id = tb_equipment.equipment_id \
+                                WHERE dt_failure BETWEEN '2020-01-01 00:00:00' AND '2020-01-30 23:59:59'), \
+                                    temp2 AS(SELECT equipment_id, group_name, COUNT(*) as n_failures \
+                                        FROM temp GROUP BY equipment_id) \
+                                            SELECT group_name, AVG(n_failures) AS avg_n_failures \
+                                                FROM temp2 GROUP BY group_name ORDER BY avg_n_failures ASC;"
         )
         ans_3 = connection.execute(query_3)
         data = []
         for x in ans_3:
             data.append(x)
         df_3 = pd.DataFrame(data, columns = ['group_name', 'avg_failures'])
-        print(df_3.to_string(index=False))
+        print('\n'*2 + 'ANSWER 3:' + '\n'*2 + df_3.to_string(index=False))
+        df_3.to_excel('answers/answer3.xlsx', index=False)
             
         
     except SQLAlchemyError as e:

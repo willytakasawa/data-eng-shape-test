@@ -1,7 +1,7 @@
-2022-04-06 19:21:11,066 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
-2022-04-06 19:21:11,066 DEBUG    ANSWER - 1 - Iniciando o de extracao
-2022-04-06 19:21:11,099 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
-2022-04-06 19:21:11,099 DEBUG    ANSWER - 2 - Iniciando o de extracao
-2022-04-06 19:21:11,139 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
-2022-04-06 19:21:11,139 DEBUG    ANSWER - 3 - Iniciando o processo de extracao
-2022-04-06 19:21:11,188 INFO     ANSWER MAIN - Finalizado elapsed_time: 0:00:00.146275
+2022-04-06 19:52:19,448 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
+2022-04-06 19:52:19,448 DEBUG    ANSWER - 1 - Iniciando o de extracao
+2022-04-06 19:52:19,519 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
+2022-04-06 19:52:19,519 DEBUG    ANSWER - 2 - Iniciando o de extracao
+2022-04-06 19:52:19,540 DEBUG    db_generic - Conexao ao MySQL realizada com sucesso
+2022-04-06 19:52:19,540 DEBUG    ANSWER - 3 - Iniciando o processo de extracao
+2022-04-06 19:52:19,557 INFO     ANSWER MAIN - Finalizado elapsed_time: 0:00:00.128200
