@@ -40,7 +40,7 @@ def ansSecondQuestion():
                     FROM tb_failure LEFT JOIN tb_sensor ON tb_failure.sensor = tb_sensor.sensor_id \
                         LEFT JOIN tb_equipment ON tb_sensor.equipment_id = tb_equipment.equipment_id \
                             WHERE dt_failure BETWEEN '2020-01-01 00:00:00' AND '2020-01-30 23:59:59') \
-                                SELECT code, COUNT(*) AS counter FROM temp GROUP BY code ORDER BY counter DESC;"
+                                SELECT code, COUNT(*) AS counter FROM temp GROUP BY code ORDER BY counter DESC LIMIT 1;"
         )
         ans_2 = connection.execute(query_2)
         data = []
